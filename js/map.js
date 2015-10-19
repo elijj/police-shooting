@@ -36,7 +36,7 @@ var customBuild = function(data, mapObject) {
 	var armedWhite = 0;
 	var armedNon = 0;
 	var unarmedNon = 0;
-	data.map(function(value){
+	data = data.map(function(value){
 		if (value.Weapon == 'Unarmed'){
 			if(value.Race != 'White'){
 				unarmedNon += 1;
