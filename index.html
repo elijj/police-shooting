@@ -1,36 +1,58 @@
 <!doctype html>
-
+<!--author: Eli Jackson Oct 18,2015 -->
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Police Shootings</title>
-
     <!-- jQuery, Bootstrap -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    
+    <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
     <!-- leaflet libraries -->
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-
     <!-- Custom files -->
     <script type="text/javascript" src="js/map.js"></script>
-    <link rel="stylesheet" href="css/main.css"/>
-   
+    <link rel="stylesheet" href="css/main.css"/> 
   </head>
   <body>
+    <div class="container">
+    <h1>Police Shootings</h1>
+    <p>
+      Police wrongdoings have always been tried to be shushed up. In 1994 congress was ordered by the Atorny General to publish annual statistics on police use of excessive force; this was never carried out. Many different groups have tired to track these killings and compile lists so that this information will not be continuously shushed up. <a href='https://en.wikipedia.org/wiki/List_of_killings_by_law_enforcement_officers_in_the_United_States'>Wikipedia </a>and other online channels have tried to make these wrongdoings public. 
+    </p>
+    <table class="table table-striped">
+    <tr>
+      <td></td>
+      <td>Armed</td>
+      <td>Unarmed</td>
+    </tr>
+    <tr>
+      <td>White</td>
+      <td id="x1y2"></td>
+      <td id="x2y2"></td>
+    </tr>
+    <tr>
+      <td>Non-white &amp; Unknown</td>
+      <td id="x1y1"></td>
+      <td id="x2y1"></td>
+    </tr>
+    </table>
     <!-- You may want to put your title and additional informaiton here -->
+    <p>
+      This map and table shows crowd sourced police shooting data from <a href ="http://regressing.deadspin.com/deadspin-police-shooting-database-update-were-still-go-1627414202">deadspin</a>. Circle color indicates if the victim was <b>hit</b> or <span id="killed">killed</span>. Click each point for more deailts.
+    </p>
     <div class="container">
       <!-- This is the div that your map will go in.  You'll need to reference its id -->
       <div id="container"></div>
     </div>
+  </div>
     <script>
-      
       drawMap();
-      
     </script>
   </body>
 </html>
