@@ -2,30 +2,30 @@
 // Function to draw your map 
 var drawMap = function() {
   // Create map and set view
- 	var map = L.map('container').setView([39.5, -98.35], 4);
+ 	var mapObject = L.map('container').setView([39.5, -98.35], 4);
   // Create a tile layer variable using the appropriate url
   	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     id: 'mapbox.streets-satellite',
     accessToken: 'pk.eyJ1IjoiZWxpamoiLCJhIjoiY2lmd3psY2s0M2o5N3RmbTFlcXpxYngxMSJ9.yLK8vRQjqHB0lQ0vkA6vPw'
-}).addTo(map);
+}).addTo(mapObject);
   	// Add the layer to your map
   	// Execute your function to get data
-  	getData(map);
+  	getData(mapObject);
 }
 
 // Function for getting data
-var getData = function(map) {
+var getData = function(mapObject) {
 	var data;
 	$.get( "data/response.json", function( data ) {
-	  customBuild(data , map);  
+	  customBuild(data , mapObject);  
 	});
   // Execute an AJAX request to get the data in data/response.js
   // When your request is successful, call your customBuild function
 }
 
 // Loop through your data and add the appropriate layers and points
-var customBuild = function(data, map) {
+var customBuild = function(data, mapObject) {
 	var unknown = new L.LayerGroup([]);
 	var white = new L.LayerGroup([]);
 	var black = new L.LayerGroup([]);
@@ -36,7 +36,7 @@ var customBuild = function(data, map) {
 	var armedWhite = 0;
 	var armedNon = 0;
 	var unarmedNon = 0;
-	$.map(data,function(value){
+	data.map(function(value){
 		if (value.Weapon == 'Unarmed'){
 			if(value.Race != 'White'){
 				unarmedNon += 1;
@@ -92,7 +92,7 @@ var customBuild = function(data, map) {
 	};
 	L.control.layers(null,layers,{
 		collapsed : false
-	}).addTo(map);
+	}).addTo(mapObject);
 	$('#x2y2').html(unarmedWhite);
 	$('#x1y2').html(armedWhite);
 	$('#x1y1').html(armedNon);
