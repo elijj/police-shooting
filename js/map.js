@@ -80,7 +80,8 @@ var customBuild = function(data, map) {
 		if (value.Race == 'Native Hawaiian or Other Pacific Islander'){
 			circle.addTo(island);
 		}	
-	})
+	});
+
 	var layers = {
 		"Unknown" : unknown,
 		"White" : white,
