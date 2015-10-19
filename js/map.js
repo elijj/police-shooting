@@ -19,7 +19,7 @@ var getData = function(mapObject) {
 	var data;
 	$.get( "data/response.json", function( data ) {
 	  customBuild(data , mapObject);  
-	});
+	},'json');
   // Execute an AJAX request to get the data in data/response.js
   // When your request is successful, call your customBuild function
 }
@@ -36,7 +36,7 @@ var customBuild = function(data, mapObject) {
 	var armedWhite = 0;
 	var armedNon = 0;
 	var unarmedNon = 0;
-	data = data.map(function(value){
+	data.map(function(value){
 		if (value.Weapon == 'Unarmed'){
 			if(value.Race != 'White'){
 				unarmedNon += 1;
